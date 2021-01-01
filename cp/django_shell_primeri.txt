@@ -1,0 +1,66 @@
+
+U konzoli izvrsiti "python manage.py shell"
+Zatim probati sledece instrukcije:
+
+from baza.models import Article, Comment
+
+Article.objects.all()
+
+a = Article(content="Neki novi artikal")
+a.save()
+
+a.id
+a.created_at
+a.updated_at
+a.content
+
+a.content = "Menjamo tekst"
+a.save()
+
+a.content
+a.updated_at
+
+Article.objects.all()
+Article.objects.get(id=1)
+
+a2 = Article(content="novi artikal", num_views=10)
+a2.save()
+
+Article.objects.all()
+
+a.is_popular()
+a2.is_popular()
+
+Article.objects.filter(content__startswith="novi")  # Obratiti paznju na 2 donje crte
+Article.objects.filter(num_views__lte=5)
+Article.objects.filter(num_views__gte=5)
+Article.objects.filter(num_views__gte=5).exclude(content__startswith='novi')
+
+a.comment_set.all()
+
+a.comment_set.create(content="komentar")
+a.comment_set.create(content="novi komentar")
+a.comment_set.create(content="jos komentara")
+
+a.comment_set.all()
+a.comment_set.count()
+
+a2.comment_set.all()
+
+Comment.objects.all()
+
+c = Comment(content="Drugi nacin", article=a2)
+c.save()
+
+Comment.objects.all()
+a2.comment_set.count()
+
+c2 = Comment.objects.get(content__startswith="novi")
+
+c2.delete()
+c2
+a.comment_set.all()
+Comment.objects.all()
+
+a.delete()
+Comment.objects.all()
