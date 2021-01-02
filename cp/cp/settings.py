@@ -56,7 +56,7 @@ ROOT_URLCONF = 'cp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'portfolio/templates')]
+        'DIRS': ['templates', os.path.join(BASE_DIR, 'portfolio/templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'cp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'portfolio_baza',
+        'NAME': 'data',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',
@@ -87,7 +87,7 @@ DATABASES = {
     }
 }
 
-
+LOGIN_REDIRECT_URL = '/currencies'
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 

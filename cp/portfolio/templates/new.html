@@ -1,0 +1,42 @@
+{% extends 'master.html' %}
+
+{% block title %}
+    New Currency
+{% endblock %}
+
+{% block content %}
+
+    <form method="post" action="{% url 'portfolio:new' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.name.id_for_label }}">{{ form.name.label_tag }}</label>
+            <input type="text" class="form-control" id="{{ form.name.id_for_label }}" name="{{ form.name.name }}">
+            {% if form.name.errors %}
+                <div class="alert alert-danger">
+                    <ul style="text-align: left">
+                        {% for error in form.name.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.description.id_for_label }}">{{ form.description.label_tag }}</label>
+            <textarea class="form-control" id="{{ form.description.id_for_label }}" name="{{ form.description.name }}" rows="5"></textarea>
+            {% if form.description.errors %}
+                <div class="alert alert-danger">
+                    <ul style="text-align: left">
+                        {% for error in form.description.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+
+        <input type="submit" class="btn btn-primary btn-lg" value="Add"/>
+    </form>
+
+{% endblock %}

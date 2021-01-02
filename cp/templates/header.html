@@ -1,0 +1,23 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'portfolio:currencies' %}">
+        <img src="{% static 'img/rocket.png' %}" width="30" height="30" class="d-inline-block align-top" alt="logo"/>
+        Vezbe 13
+    </a>
+
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            {% if not perms.portfolio.add_currency %}
+                <a class="nav-link disabled" href="{% url 'portfolio:new' %}">New currency</a>
+            {% else %}
+                <a class="nav-link" href="{% url 'portfolio:new' %}">New currency</a>
+            {% endif %}
+        </li>
+    </ul>
+
+    {% if user.is_authenticated %}
+        <a class="nav-link" href="{% url 'logout' %}">Logout {{ user.get_username }}</a>
+    {% endif %}
+
+</nav>
