@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponse
 from .models import Currency
 from .forms import CurrencyForm
+from .forms import TransactionForm
+from .models import Transaction
 
 
 def hello(request):
@@ -84,3 +86,18 @@ def new(req):
     else:
         form = CurrencyForm()
         return render(req, 'new.html', {'form': form})
+
+@permission_required('portfolio.add_transaction')
+def transaction(req, id):
+    if req.method == 'POST':
+        form = TransactionForm(req.POST)
+
+        if form.is_valid():
+            a = Transaction(adressFrom=form.cleaned_data['adressFrom'], amount=form.cleaned_data['amount'], adressTo=form.changed_data['adressTo'], currency=Currency.objects.get(id=id))
+            a.save()
+            return redirect('portfolio:currencies')
+        else:
+            return render(req, 'newTransaction.html', {'form': form})
+    else:
+        form = TransactionForm()
+        return render(req, 'newTransaction.html', {'form': form})
