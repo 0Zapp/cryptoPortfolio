@@ -19,12 +19,12 @@
             </blockquote>
         </div>
     </div>
+    <div class="card">
     <div class="list-group">
         {% for transaction in transactions %}
-         <div class="card">
             <p>{{ transaction.adressFrom }} transfered to {{ transaction.adressTo }}  {{ transaction.amount }} {{ transaction.currency }}</p
-        </div>
         {% endfor %}
+    </div>
     </div>
     {% if perms.portfolio.add_transactions %}
         <a href="{% url 'portfolio:transaction' currency.id %}">

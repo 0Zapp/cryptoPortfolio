@@ -10,7 +10,7 @@
         {% csrf_token %}
         <div class="form-group">
             <label for="{{ form.adressFrom.id_for_label }}">{{ form.adressFrom.label_tag }}</label>
-            <input type="text" class="form-control" id="{{ form.adressFrom.id_for_label }}" adressFrom="{{ form.adressFrom.name }}">
+            <input type="text" class="form-control" id="{{ form.adressFrom.id_for_label }}" name="{{ form.adressFrom.name }}">
             {% if form.adressFrom.errors %}
                 <div class="alert alert-danger">
                     <ul style="text-align: left">
@@ -24,7 +24,7 @@
 
         <div class="form-group">
             <label for="{{ form.amount.id_for_label }}">{{ form.amount.label_tag }}</label>
-            <input type="text" class="form-control" id="{{ form.amount.id_for_label }}" amount="{{ form.amount.name }}">
+            <input type="text" class="form-control" id="{{ form.amount.id_for_label }}" name="{{ form.amount.name }}">
             {% if form.amount.errors %}
                 <div class="alert alert-danger">
                     <ul style="text-align: left">
@@ -38,7 +38,7 @@
 
         <div class="form-group">
             <label for="{{ form.adressTo.id_for_label }}">{{ form.adressTo.label_tag }}</label>
-            <input type="text" class="form-control" id="{{ form.adressTo.id_for_label }}" adressTo="{{ form.adressTo.name }}">
+            <input type="text" class="form-control" id="{{ form.adressTo.id_for_label }}" name="{{ form.adressTo.name }}">
             {% if form.adressTo.errors %}
                 <div class="alert alert-danger">
                     <ul style="text-align: left">

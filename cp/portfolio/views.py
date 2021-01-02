@@ -95,7 +95,7 @@ def transaction(req, id):
         form = TransactionForm(req.POST)
 
         if form.is_valid():
-            a = Transaction(adressFrom=form.cleaned_data['adressFrom'], amount=form.cleaned_data['amount'], adressTo=form.changed_data['adressTo'], currency=Currency.objects.get(id=id))
+            a = Transaction(adressFrom=form.cleaned_data['adressFrom'], amount=form.cleaned_data['amount'], adressTo=form.cleaned_data['adressTo'], currency=Currency.objects.get(id=id))
             a.save()
             return redirect('portfolio:currencies')
         else:
