@@ -50,7 +50,8 @@ def currencies(req):
 @login_required
 def currency(req, id):
     tmp = get_object_or_404(Currency, id=id)
-    return render(req, 'currency.html', {'currency': tmp, 'page_title': tmp.name})
+    transactions = tmp.transaction_set.all()
+    return render(req, 'currency.html', {'currency': tmp, 'page_title': tmp.name, 'transactions': transactions})
 
 
 @permission_required('portfolio.change_currency')
@@ -89,6 +90,7 @@ def new(req):
 
 @permission_required('portfolio.add_transaction')
 def transaction(req, id):
+    tmp = get_object_or_404(Currency, id=id)
     if req.method == 'POST':
         form = TransactionForm(req.POST)
 
@@ -97,7 +99,7 @@ def transaction(req, id):
             a.save()
             return redirect('portfolio:currencies')
         else:
-            return render(req, 'newTransaction.html', {'form': form})
+            return render(req, 'newTransaction.html', {'currency': tmp,'form': form})
     else:
         form = TransactionForm()
-        return render(req, 'newTransaction.html', {'form': form})
+        return render(req, 'newTransaction.html', {'currency': tmp,'form': form})

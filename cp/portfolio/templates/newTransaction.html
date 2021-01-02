@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <form method="post" action="{% url 'portfolio:newTransaction' %}">
+    <form method="post" action="{% url 'portfolio:transaction' currency.id %}">
         {% csrf_token %}
         <div class="form-group">
             <label for="{{ form.adressFrom.id_for_label }}">{{ form.adressFrom.label_tag }}</label>

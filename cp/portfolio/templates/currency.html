@@ -19,5 +19,17 @@
             </blockquote>
         </div>
     </div>
+    <div class="list-group">
+        {% for transaction in transactions %}
+         <div class="card">
+            <p>{{ transaction.adressFrom }} transfered to {{ transaction.adressTo }}  {{ transaction.amount }} {{ transaction.currency }}</p
+        </div>
+        {% endfor %}
+    </div>
+    {% if perms.portfolio.add_transactions %}
+        <a href="{% url 'portfolio:transaction' currency.id %}">
+            <span class="badge badge-primary">Add Transaction</span>
+        </a>
+    {% endif %}
 
 {% endblock %}

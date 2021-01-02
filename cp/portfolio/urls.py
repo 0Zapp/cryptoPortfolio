@@ -8,5 +8,5 @@ urlpatterns = [
     path('currencies/<int:id>/', views.currency, name='currency'),
     path('currency/edit/<int:id>/', views.edit, name='edit'),
     path('currency/new/', views.new, name='new'),
-    path('currencies/<int:id>/transaction', views.transaction, name= 'transaction')
+    path('transaction/<int:id>/', views.transaction, name= 'transaction')
 ]
