@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <form method="post" action="{% url 'demo_app:edit' id %}">
+    <form method="post" action="{% url 'portfolio:edit' id %}">
         {% csrf_token %}
         <div class="form-group">
             <label for="{{ form.name.id_for_label }}">{{ form.name.label_tag }}</label>

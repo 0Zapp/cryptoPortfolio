@@ -48,7 +48,7 @@ def currencies(req):
 @login_required
 def currency(req, id):
     tmp = get_object_or_404(Currency, id=id)
-    return render(req, 'currency.html', {'currency': tmp, 'page_title': tmp.title})
+    return render(req, 'currency.html', {'currency': tmp, 'page_title': tmp.name})
 
 
 @permission_required('portfolio.change_currency')

@@ -8,7 +8,7 @@
     <div class="list-group">
         {% for currency in currencies %}
             <a class="list-group-item list-group-item-action" href="{% url 'portfolio:currency' currency.id %}">
-                {{ currency.title }}
+                {{ currency.name }}
             </a>
         {% endfor %}
     </div>
