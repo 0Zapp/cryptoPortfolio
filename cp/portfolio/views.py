@@ -6,34 +6,6 @@ from .forms import CurrencyForm
 from .forms import TransactionForm
 from .models import Transaction
 
-
-def hello(request):
-    return HttpResponse('Hello Django')
-
-
-def broj(request, broj):
-    return HttpResponse('Uneli ste borj: ' + str(broj))
-
-
-def rec(request, rec):
-    return HttpResponse('Uneli ste rec: ' + rec)
-
-
-def tekst(request, tekst):
-    return HttpResponse('Uneli ste: ' + tekst)
-
-
-def regex(request, godina, mesec):
-    return HttpResponse('Uneli ste godinu: ' + str(godina) + ' i mesec: ' + str(mesec))
-
-
-def parametri(request):
-    return HttpResponse('Uneti parametri su: ' + str([str(k) + ': ' + str(v) for k, v in request.GET.items()]))
-
-
-def helloPage(requset):
-    return render(requset, 'hello.html')
-
 def index(req):
     if not req.user.is_authenticated:
         return render(req, 'index.html', {'page_title': 'Crypto Portfolio'})
