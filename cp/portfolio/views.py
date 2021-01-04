@@ -36,7 +36,7 @@ def helloPage(requset):
 
 def index(req):
     if not req.user.is_authenticated:
-        return render(req, 'index.html', {'page_title': 'Vezbe 13'})
+        return render(req, 'index.html', {'page_title': 'Crypto Portfolio'})
     else:
         return redirect('portfolio:currencies')
 
