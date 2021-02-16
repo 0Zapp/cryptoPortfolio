@@ -31,5 +31,34 @@
             <span class="badge badge-primary">Add Transaction</span>
         </a>
     {% endif %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+        google.charts.load('current', {packages: ['corechart', 'line']});
+        google.charts.setOnLoadCallback(drawBasic);
 
+        function drawBasic() {
+        chart = JSON.parse("{{chart|escapejs}}");
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'X');
+        data.addColumn('number', 'amount');
+
+
+        data.addRows(chart);
+
+        var options = {
+            hAxis: {
+            title: 'transaction number'
+            },
+            vAxis: {
+            title: 'Volume'
+            }
+        };
+
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
+        </script>
+        <div id="chart_div"></div>
 {% endblock %}

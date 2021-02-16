@@ -5,6 +5,7 @@ from .models import Currency
 from .forms import CurrencyForm
 from .forms import TransactionForm
 from .models import Transaction
+from json import dumps
 
 def index(req):
     if not req.user.is_authenticated:
@@ -16,14 +17,24 @@ def index(req):
 @login_required
 def currencies(req):
     tmp = Currency.objects.all()
-    return render(req, 'currencies.html', {'currencies': tmp})
+    collection = [['Currency', 'Number of Transactions']]
+
+    for i in range(len(tmp)):
+        collection.append([tmp[i].name,len(tmp[i].transaction_set.all())])
+    
+    collection = dumps(collection)
+    return render(req, 'currencies.html', {'currencies': tmp, 'pie':collection})
 
 
 @login_required
 def currency(req, id):
     tmp = get_object_or_404(Currency, id=id)
     transactions = tmp.transaction_set.all()
-    return render(req, 'currency.html', {'currency': tmp, 'page_title': tmp.name, 'transactions': transactions})
+    collection = []
+    for i in range(len(transactions)):
+        collection.append([i+1,transactions[i].amount])
+    collection = dumps(collection)
+    return render(req, 'currency.html', {'currency': tmp, 'page_title': tmp.name, 'transactions': transactions, 'chart':collection})
 
 
 @permission_required('portfolio.change_currency')
