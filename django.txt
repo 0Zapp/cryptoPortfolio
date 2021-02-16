@@ -1,0 +1,7 @@
+instaliras python
+py -m pip --version
+virtualenv venv
+udjes cd u venv cd u Scripts i tu ukucas activate
+pip install Django
+django-admin startproject v10
+python manage.py runserver 8000
